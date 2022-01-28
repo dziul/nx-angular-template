@@ -25,3 +25,6 @@
 - [@nrwl/angular:application](https://nx.dev/angular/application#nrwlangularapplication)
 - [@nrwl/angular:library](https://nx.dev/angular/library#nrwlangularlibrary)
 - [@nrwl/storybook](https://nx.dev/storybook/overview-angular)
+- [Workspace Generators](https://nx.dev/generators/workspace-generators)
+  
+  > `npx nx workspace-generator [generator_name] -d`
