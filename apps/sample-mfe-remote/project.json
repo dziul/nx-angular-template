@@ -1,0 +1,104 @@
+{
+  "projectType": "application",
+  "root": "apps/sample-mfe-remote",
+  "sourceRoot": "apps/sample-mfe-remote/src",
+  "prefix": "nx-angular-mfe-template",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:webpack-browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/sample-mfe-remote",
+        "index": "apps/sample-mfe-remote/src/index.html",
+        "main": "apps/sample-mfe-remote/src/main.ts",
+        "polyfills": "apps/sample-mfe-remote/src/polyfills.ts",
+        "tsConfig": "apps/sample-mfe-remote/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/sample-mfe-remote/src/favicon.ico",
+          "apps/sample-mfe-remote/src/assets"
+        ],
+        "styles": ["apps/sample-mfe-remote/src/styles.scss"],
+        "scripts": [],
+        "customWebpackConfig": {
+          "path": "apps/sample-mfe-remote/webpack.config.js"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/sample-mfe-remote/src/environments/environment.ts",
+              "with": "apps/sample-mfe-remote/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "apps/sample-mfe-remote/webpack.prod.config.js"
+          }
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@nrwl/angular:webpack-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "sample-mfe-remote:build:production"
+        },
+        "development": {
+          "browserTarget": "sample-mfe-remote:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "port": 4210,
+        "publicHost": "http://localhost:4210"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "sample-mfe-remote:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/sample-mfe-remote/src/**/*.ts",
+          "apps/sample-mfe-remote/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/sample-mfe-remote"],
+      "options": {
+        "jestConfig": "apps/sample-mfe-remote/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

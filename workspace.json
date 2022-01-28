@@ -1,4 +1,7 @@
 {
   "version": 2,
-  "projects": {}
+  "projects": {
+    "sample-app": "apps/sample-app",
+    "sample-mfe-remote": "apps/sample-mfe-remote"
+  }
 }
