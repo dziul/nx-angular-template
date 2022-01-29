@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "$id": "generate-app",
+  "title": "Nx Application Options Schema",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "App name",
+      
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "Qual o nome do aplicativo?",
+      "pattern": "^[a-zA-Z].*$"
+    },
+    "mfe": {
+      "type": "boolean",
+      "description": "Add module federation configuration",
+      "default": false,
+      "x-prompt": "Gerar uma configuração de micro front-end para o aplicativo?"
+    },
+    "mfeType":  {
+      "type": "string",
+      "enum": ["none", "host", "remote"],
+      "default": "none",
+      "x-prompt": "Se sim, qual o tipo do micro front-end?"
+    },
+    
+    "port": {
+      "type": "string",
+      "description": "The port which the app should be served",
+      "x-prompt": "Qual a porta será servida?",
+      "default": 4200,
+      "pattern": "^\\d+$"
+    }
+    
+  },
+  "required": ["name"]
+}

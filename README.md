@@ -2,6 +2,8 @@
 
 [How to setup a Micro Frontend with Angular and Nx](https://nx.dev/guides/setup-mfe-with-angular)
 
+> [module federation](https://webpack.js.org/concepts/module-federation/)
+
 
 1. `npx create-nx-workspace [project_name] --preset=empty --nx-cloud=false`
    
@@ -27,4 +29,24 @@
 - [@nrwl/storybook](https://nx.dev/storybook/overview-angular)
 - [Workspace Generators](https://nx.dev/generators/workspace-generators)
   
-  > `npx nx workspace-generator [generator_name] -d`
+  - [Generator options](https://nx.dev/generators/generator-options)
+    
+    - [adding-dynamic-prompts](https://nx.dev/generators/generator-options#adding-dynamic-prompts)
+- [understanding-json-schema / conditionals](https://json-schema.org/understanding-json-schema/reference/conditionals.html#implication)
+
+  comando para teste:
+
+  > `npx nx workspace-generator [generator_name] [name] -d`
+
+
+exemplo de config do schema, para seletor-html
+```json
+{
+   "prefix": {
+      "type": "string",
+      "format": "html-selector",
+      "description": "The prefix to apply to generated selectors.",
+      "alias": "p"
+    }
+}
+```
