@@ -1,44 +1,34 @@
-import { 
+import {
   Tree,
   readJson,
   formatFiles,
   installPackagesTask,
-  readProjectConfiguration
- } from '@nrwl/devkit'
-import { applicationGenerator } from'@nrwl/angular/generators'
-
-import { getProjectConfig,  } from '@nrwl/workspace';
+  readProjectConfiguration,
 
 
+} from '@nrwl/devkit'
+import { applicationGenerator } from '@nrwl/angular/generators'
+
+import parseSchema, { Schema } from './parseApplicationSchema'
+
+import { visitNotIgnoredFiles } from '@nrwl/workspace'
+import udpateWebpackConfig from './updateWebPackConfigRefModuleFederation'
+import addSharedSampleFile from './addSharedSampleFile'
 
 
-export default async function (tree: Tree, schema: any) {
+export default async function (tree: Tree, schema: Schema) {
 
-
-  // const projectConfig  = readProjectConfiguration(tree, schema.name)
-
-
-  const nxConfig = readJson<Record<string,any>>(tree, 'nx.json')
-  const schemaDefault = nxConfig?.generators['@nrwl/angular:application'] ?? {}
-
-  
-console.log({
-  ...schemaDefault,
-  ...schema,
-  port: Number(schema.port)
-})
-  return
-
+  const schemaUpdated = parseSchema(tree, schema)
   /**
    * criação do aplicativo
    */
-  await applicationGenerator(tree, {
-    ...schemaDefault,
-    ...schema,
-    port: Number(schema.port)
-  })
+  await applicationGenerator(tree, schemaUpdated)
+  /**
+   * atualizar informação do webpack com o modulo personalizado
+   */
+  udpateWebpackConfig(tree, schemaUpdated)
+  addSharedSampleFile(tree, schemaUpdated)
 
-  
   await formatFiles(tree);
 
   return () => {

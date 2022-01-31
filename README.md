@@ -39,7 +39,14 @@
   > `npx nx workspace-generator [generator_name] [name] -d`
 
 
-exemplo de config do schema, para seletor-html
+Todas as flags de `@nrwl/angular:app`: 
+
+./node_modules/@nrwl/angular/src/generators/application/schema.d.ts
+
+
+
+exemplo de config do schema, para `seletor-html`
+
 ```json
 {
    "prefix": {
@@ -50,3 +57,8 @@ exemplo de config do schema, para seletor-html
     }
 }
 ```
+
+
+## Ref
+
+- [Dynamic Module Federation](https://www.npmjs.com/package/@angular-architects/module-federation#dynamic-module-federation)
