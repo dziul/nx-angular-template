@@ -1,19 +1,21 @@
+import * as path  from 'path'
+
 import {
   Tree,
   readJson,
   formatFiles,
   installPackagesTask,
   readProjectConfiguration,
-
+  generateFiles,  
+  visitNotIgnoredFiles
 
 } from '@nrwl/devkit'
 import { applicationGenerator } from '@nrwl/angular/generators'
 
 import parseSchema, { Schema } from './parseApplicationSchema'
 
-import { visitNotIgnoredFiles } from '@nrwl/workspace'
+
 import udpateWebpackConfig from './updateWebPackConfigRefModuleFederation'
-import addSharedSampleFile from './addSharedSampleFile'
 
 
 export default async function (tree: Tree, schema: Schema) {
@@ -26,10 +28,29 @@ export default async function (tree: Tree, schema: Schema) {
   /**
    * atualizar informação do webpack com o modulo personalizado
    */
-  udpateWebpackConfig(tree, schemaUpdated)
-  addSharedSampleFile(tree, schemaUpdated)
+  // udpateWebpackConfig(tree, schemaUpdated)
+  // addSharedSampleFile(tree, schemaUpdated)
+  const projectConfig = readProjectConfiguration(tree, schemaUpdated.name)
 
-  await formatFiles(tree);
+  generateFiles(
+    tree,
+    path.join(__dirname, 'files'),
+    projectConfig.sourceRoot,
+    schemaUpdated
+  )
+  
+  visitNotIgnoredFiles(tree, projectConfig.root, (path)=>{
+
+  if(path.includes('nx-welcome.component')) {
+    tree.delete(path)
+  }
+
+  if(path.includes('styles.scss')){
+    tree.delete(path)
+  }
+
+})
+  // await formatFiles(tree);
 
   return () => {
 

@@ -1,0 +1,9 @@
+html {
+	height: 100%;
+}
+body {
+	height: 100%;
+	overscroll-behavior: contain;
+	box-sizing: border-box;
+	-webkit-tap-highlight-color: transparent;
+}
