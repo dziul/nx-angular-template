@@ -1,0 +1,7 @@
+@import '../../../../styles/extends';
+
+button {
+    
+    font-size: 16px;
+    @extend %button;
+}

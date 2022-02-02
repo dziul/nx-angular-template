@@ -58,7 +58,24 @@ exemplo de config do schema, para `seletor-html`
 }
 ```
 
+## Criação de lib
+
+- [Doc](https://nx.dev/angular/library)
+- [buildable-and-publishable-libraries](https://nx.dev/structure/buildable-and-publishable-libraries)
+- [nx-libs-with-assets](https://juristr.com/blog/2020/05/nx-libs-with-assets/)
+
+base usada:
+
+`npx nx g @nrwl/angular:library [lib-name] --prefix=[prefix] --importPath=[lib-name-used-import] --publishable --skipModule`
+
+referente em exportar também estilos... referente a config `ng-packagr`:
+
+- [copy-assets](https://github.com/ng-packagr/ng-packagr/blob/master/docs/copy-assets.md)
+
 
 ## Ref
 
 - [Dynamic Module Federation](https://www.npmjs.com/package/@angular-architects/module-federation#dynamic-module-federation)
+
+
+

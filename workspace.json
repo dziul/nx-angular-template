@@ -1,6 +1,8 @@
 {
   "version": 2,
   "projects": {
+    "auth": "libs/auth",
+    "components": "libs/components",
     "sample-app": "apps/sample-app",
     "sample-mfe-remote": "apps/sample-mfe-remote"
   }

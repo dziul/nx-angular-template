@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'sample-app';
+
+  onDispatch(event:any){
+    console.log(event)
+  }
 }
